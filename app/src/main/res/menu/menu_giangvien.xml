@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/nav_home"
+            android:icon="@drawable/ic_home"/>
+        <item
+            android:id="@+id/nav_favorite"
+            android:title="@string/nav_favorite"
+            android:icon="@drawable/ic_favorite"/>
+        <item
+            android:id="@+id/nav_history"
+            android:title="@string/nav_history"
+            android:icon="@drawable/ic_history"/>
+    </group>
 
-    <item android:id="@+id/item1"
-        android:title="Item1"
-        android:orderInCategory="100"
-        app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="android.widget.SearchView"
-        />
-    <item android:id="@+id/item2"
-        android:title="Item2"
-        android:orderInCategory="100"
-        app:showAsAction="withText" />
+    <item android:title="@string/nav_account">
+        <menu>
+            <item
+                android:id="@+id/nav_my_profile"
+                android:title="@string/nav_profile"
+                android:icon="@drawable/ic_my_profile"/>
+            <item
+                android:id="@+id/nav_change_password"
+                android:title="@string/nav_change_password"
+                android:icon="@drawable/ic_change_password"/>
+        </menu>
+    </item>
 
-    <item android:id="@+id/item3"
-        android:title="Item3"
-        android:orderInCategory="100"
-        app:showAsAction="withText" />
-    <item android:id="@+id/item4"
-        android:title="Item4"
-        android:orderInCategory="100"
-        app:showAsAction="withText" />
+
 </menu>
