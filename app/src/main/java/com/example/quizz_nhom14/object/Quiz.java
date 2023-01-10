@@ -1,17 +1,17 @@
 package com.example.quizz_nhom14.object;
 
-import java.util.Date;
+public class Quiz {
+    private int ID=-1;
+    private String Name;//Tên Quiz
+    private String Sub;//Tên môn học
+    private int numof_questions;//Số câu hỏi
+    private String Teacher;//Tên giáo viên
 
-public class Exam {
-    private String Name;
-    private String Sub;
-    private int numof_questions;
-    private String Teacher;
-
-    public Exam() {
+    public Quiz() {
     }
 
-    public Exam(String name, String sub, int numof_questions, String teacher) {
+    public Quiz(String name, String sub, int numof_questions, String teacher) {
+        this.ID = ID;
         Name = name;
         Sub = sub;
         this.numof_questions = numof_questions;
@@ -48,5 +48,13 @@ public class Exam {
 
     public void setTeacher(String teacher) {
         Teacher = teacher;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }
