@@ -9,8 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quizz_nhom14.MainActivity;
+import com.example.quizz_nhom14.R;
+import com.example.quizz_nhom14.adapterclass.QuizzsAdapter;
 import com.example.quizz_nhom14.databinding.FragmentGalleryBinding;
+import com.example.quizz_nhom14.object.Quiz;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class GalleryFragment extends Fragment {

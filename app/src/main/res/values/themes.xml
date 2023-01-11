@@ -22,4 +22,14 @@
     <style name="Theme.Quizz_nhom14.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Quizz_nhom14.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.Quizz_nhom14.Fullscreen" parent="Theme.Quizz_nhom14">
+        <item name="android:actionBarStyle">@style/Widget.Theme.Quizz_nhom14.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.Quizz_nhom14.FullscreenContainer" parent="">
+    </style>
 </resources>
