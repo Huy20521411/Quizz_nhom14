@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "10560334087",
+    "project_id": "quizz-nhom14",
+    "storage_bucket": "quizz-nhom14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10560334087:android:05094601aa22f7582e7da2",
+        "android_client_info": {
+          "package_name": "com.example.quizz_nhom14"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10560334087-ef3pl10qqfjblnjn6i9uh9cb3hcebech.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYmT337J5KjqucUAr1rp0w9JPsZjUkYDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10560334087-ef3pl10qqfjblnjn6i9uh9cb3hcebech.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

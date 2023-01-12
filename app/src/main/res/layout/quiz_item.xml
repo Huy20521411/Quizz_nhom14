@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/examitem"
+    android:orientation="vertical"
+    android:background="@drawable/background_itemquestions"
+    android:layout_marginBottom="40px">
+    
+    <TextView
+        android:paddingTop="5px"
+        android:layout_marginLeft="25px"
+        android:id="@+id/tvExamName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ten Exam"
+        android:textSize="70px"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textAlignment="center"/>
+    <TextView
+        android:paddingTop="5px"
+        android:paddingBottom="5px"
+        android:layout_marginLeft="25px"
+        android:id="@+id/tvExamSub"
+        android:layout_marginTop="10px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mon Hoc"
+        android:textSize="50px"/>
+    <TextView
+        android:paddingTop="5px"
+        android:paddingBottom="5px"
+        android:layout_marginLeft="25px"
+        android:id="@+id/tvExamNumques"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="So cau hoi"
+        android:textSize="50px"/>
+    <TextView
+        android:paddingTop="5px"
+        android:paddingBottom="5px"
+        android:paddingRight="20px"
+        android:id="@+id/tvTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ten giang vien"
+        android:textSize="43px"
+        android:background="@drawable/tv_teacher"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAlignment="viewEnd"/>
+</LinearLayout>

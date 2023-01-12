@@ -10,7 +10,7 @@
             </item>
             <item android:bottom="2dp" android:left="2dp">
                 <shape>
-                    <solid android:color="@color/wrong_ans"/>
+                    <solid android:color="@color/right_ans"/>
                     <stroke android:width="1px" android:color="#BABABA" />
                     <corners android:radius="30dp" />
                     <padding android:bottom="10dp" android:left="10dp"

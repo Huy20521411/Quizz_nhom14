@@ -4,15 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".activity.MainActivity"
+    android:paddingLeft="20px"
+    android:paddingRight="20px"
+    android:background="@color/khoi">
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_marginTop="150px"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        app:layout_constraintTop_toBottomOf="@id/tv_Title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
     <TextView
+        android:layout_marginTop="30px"
+        android:text="QUIZS"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="120px"
+        android:id="@+id/tv_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90px"
+        android:scrollbars="none"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Title"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"/>
+
+    <Button
+        android:id="@+id/btnProgress"
+        android:text="Progress"
+        android:drawableLeft="@drawable/ic_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="160px"
+        android:background="@drawable/custom_progress_button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
