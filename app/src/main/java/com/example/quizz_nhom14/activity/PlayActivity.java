@@ -148,11 +148,15 @@ public class PlayActivity extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     dq=new DidQuiz(user,quiz,result,dtf.format(now));
                 }
-                myRef.child("DidQuiz/"+(countDidQuiz+1)).setValue(dq);
+                if (CountClickBtnFinish==0){
+                    myRef.child("DidQuiz/"+(countDidQuiz+1)).setValue(dq);
+                }
+                else{
+                    finish();
+                }
                 HideItem();
                 btnFinish.setVisibility(VISIBLE);
                 btnFinish.setText("Back to Home");
-                if (CountClickBtnFinish!=0) finish();
                 CountClickBtnFinish++;
             }
         });

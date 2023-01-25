@@ -45,17 +45,18 @@ public class DidSameQuizAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row=inflater.inflate(R.layout.didquiz_item,null);
-        ArrayList<DidQuiz> list=this.listdidsame.get(position).list;
+        ArrayList<DidQuiz> list=new ArrayList<>();
+        list=this.listdidsame.get(position).list;
         TextView namequiz=row.findViewById(R.id.tvDidQuizName);
         TextView subname=row.findViewById(R.id.tvDidSubName);
         TextView didnum=row.findViewById(R.id.tvNumDid);
-        TextView teacher=row.findViewById(R.id.tvTeacher);
+        TextView teacher=row.findViewById(R.id.tvTeacher1);
         ProgressBar progressBar=row.findViewById(R.id.progress1);
-        namequiz.setText(list.get(list.size()-1).getQuiz().getName());
-        subname.setText(list.get(list.size()-1).getQuiz().getSub());
+        namequiz.setText(list.get(0).getQuiz().getName());
+        subname.setText(list.get(0).getQuiz().getSub());
         didnum.setText("Số lần làm quiz: "+list.size());
         teacher.setText(list.get(list.size()-1).getQuiz().getTeacher());
-        progressBar.setProgress((int)this.listdidsame.get(position).getAverage());
+        progressBar.setProgress((int)(this.listdidsame.get(position).getAverage()));
         return row;
     }
 }

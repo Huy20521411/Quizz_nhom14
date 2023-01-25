@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(colorDrawable);
 
         User user=new User(1,"Khoi 2");
-//        Quiz quiz =new Quiz("History of 2023","Phát triển ứng dụng di động",16,"Trần Hồng Nghi");
+        Quiz quiz =new Quiz("History of 2023","Phát triển ứng dụng di động",16,"Trần Hồng Nghi");
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         myRef.child("JoinQuiz").addValueEventListener(new ValueEventListener() {
             @Override

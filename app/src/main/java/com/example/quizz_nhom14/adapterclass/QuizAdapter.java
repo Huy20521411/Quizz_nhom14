@@ -43,7 +43,6 @@ public class QuizAdapter extends BaseAdapter {
         LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row=inflater.inflate(R.layout.quiz_item,null);
         Quiz quiz =list.get(position);
-        LinearLayout ln=row.findViewById(R.id.examitem);
         TextView tvName=row.findViewById(R.id.tvExamName);
         TextView tvSub=row.findViewById(R.id.tvExamSub);
         TextView tvNum=row.findViewById(R.id.tvExamNumques);

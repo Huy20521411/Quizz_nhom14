@@ -9,13 +9,17 @@ public class DidSameQuizs {
         return this.list.size();
     }
 
-    public long getAverage() {
-        int S=0,A;
+    public DidSameQuizs(ArrayList<DidQuiz> list) {
+        this.list = list;
+    }
+    public DidSameQuizs() {}
+
+    public float getAverage() {
+        float S=0f,A;
         for(int i=0;i<this.list.size();i++){
-            S+=this.list.get(i).getResult();
+            S+=(((float)this.list.get(i).getResult()/(float)list.get(i).getQuiz().getNumof_questions())/ (float)list.size())*100;
         }
-        A=(int)S/list.size();
-        return A;
+        return S;
     }
 
 }

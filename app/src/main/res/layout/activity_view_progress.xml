@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ViewProgressActivity">
+    android:paddingLeft="20px"
+    android:paddingRight="20px"
+    tools:context=".activity.ViewProgressActivity"
+    android:background="@color/khoi">
   <TextView
       android:layout_marginTop="30px"
       android:text="DONE QUIZS"
       android:textColor="@color/black"
       android:textStyle="bold"
+      android:scrollbars="none"
       android:textSize="120px"
       android:id="@+id/tv_Title"
       android:layout_width="wrap_content"
@@ -27,7 +31,15 @@
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/tv_Title"
       android:divider="@android:color/transparent"
-      android:dividerHeight="10.0sp"/>
-
+      android:dividerHeight="10.0sp"
+      android:layout_marginBottom="20px"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Test"
+      app:layout_constraintTop_toBottomOf="@id/lvdidsame"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      android:textSize="50px"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
