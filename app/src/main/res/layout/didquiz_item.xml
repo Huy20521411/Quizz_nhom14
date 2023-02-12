@@ -6,70 +6,24 @@
     android:orientation="vertical"
     android:background="@drawable/background_itemquestions"
     android:layout_marginBottom="40px">
-    
-    <TextView
-        android:paddingTop="5px"
-        android:layout_marginLeft="25px"
-        android:id="@+id/tvDidQuizName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ten Quiz"
-        android:textSize="70px"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textAlignment="center"/>
-    <TextView
-        android:paddingTop="5px"
-        android:paddingBottom="5px"
-        android:layout_marginLeft="25px"
-        android:id="@+id/tvDidSubName"
-        android:layout_marginTop="10px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mon Hoc"
-        android:textSize="50px"/>
-    <TextView
-        android:paddingTop="5px"
-        android:paddingBottom="5px"
-        android:layout_marginLeft="25px"
-        android:id="@+id/tvNumDid"
-        android:layout_marginTop="10px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Số lần làm quiz:"
-        android:textSize="50px"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="30px"
-        android:paddingRight="30px"
-        android:paddingTop="5px"
-        android:paddingBottom="5px">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tỉ lệ trả lời đúng"
-            android:textSize="50px"/>
-        <ProgressBar
-            android:id="@+id/progress1"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="30px"
-            android:layout_margin="30px"/>
-    </LinearLayout>
 
     <TextView
         android:paddingTop="5px"
         android:paddingBottom="5px"
-        android:paddingRight="20px"
-        android:id="@+id/tvTeacher1"
+        android:layout_marginLeft="25px"
+        android:id="@+id/tvTime"
+        android:layout_marginTop="10px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ten giang vien"
-        android:textSize="43px"
-        android:background="@drawable/tv_teacher"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textAlignment="viewEnd"/>
+        android:text="Thời gian làm quiz:"
+        android:textSize="50px"/>
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_marginTop="10px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số câu trả lời đúng"
+        android:textSize="50px"
+        android:layout_marginLeft="25px"/>
+
 </LinearLayout>

@@ -1,140 +1,121 @@
 package com.example.quizz_nhom14.activity;
 
-import static android.view.View.GONE;
-import static java.lang.Thread.sleep;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.ProgressBar;
+import android.view.MenuItem;
 
-import com.example.quizz_nhom14.object.JoinQuiz;
-import com.example.quizz_nhom14.object.Quiz;
-import com.example.quizz_nhom14.adapterclass.QuizAdapter;
 import com.example.quizz_nhom14.R;
+import com.example.quizz_nhom14.fragment.ProgressFragment;
+import com.example.quizz_nhom14.fragment.QuizFragment;
 import com.example.quizz_nhom14.object.User;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-    ArrayList<JoinQuiz> ListJoin;
-    ArrayList<Quiz> ListQuiz;
-    QuizAdapter adapter;
-    ListView listView;
-    Button btnProgress;
-    ProgressBar Progress3s;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final int FRAGMENT_QUIZ=0;
+    private static final int FRAGMENT_PROGRESS=1;
+    private static final int FRAGMENT_PROFILE =2;
+    private static final int FRAGMENT_CHANGEPASS =3;
+    private int mCurrentFragment=FRAGMENT_QUIZ;
+    NavigationView navigationView;
+    DrawerLayout mDrawerLayout;
+    Toolbar toolbar;
+    QuizFragment fquiz=new QuizFragment();
+    ProgressFragment fprogress=new ProgressFragment();
+    FragmentManager fm=getSupportFragmentManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//         getSupportActionBar().hide();
-        listView=findViewById(R.id.lv);
-        Progress3s=findViewById(R.id.progress);
-        btnProgress=findViewById(R.id.btnProgress);
-        ListJoin=new ArrayList<>();
-        ListQuiz=new ArrayList<>();
+        mDrawerLayout=findViewById(R.id.drawer_layout);
 
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
+        toolbar=findViewById(R.id.toolbar);
+        toolbar.setTitle("QUIZS");
+        setSupportActionBar(toolbar);
 
-        // Define ColorDrawable object and parse color
-        // using parseColor method
-        // with color hash code as its parameter
-        ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#3765DA"));
+        ActionBarDrawerToggle drawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,toolbar
+                ,R.string.nav_draw_start,R.string.nav_drawe_close);
 
-        // Set BackgroundDrawable
-        actionBar.setBackgroundDrawable(colorDrawable);
+        mDrawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
 
-        User user=new User(1,"Khoi 2");
-        Quiz quiz =new Quiz("History of 2023","Phát triển ứng dụng di động",16,"Trần Hồng Nghi");
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
-        myRef.child("JoinQuiz").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot s:snapshot.getChildren()){
-                    ListJoin.add(s.getValue(JoinQuiz.class));
-                }
+        navigationView=findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+//        fquiz=new QuizFragment();
+//        fprogress=new ProgressFragment();
+
+        replaceFragment(fquiz);
+        navigationView.getMenu().findItem(R.id.nav_quiz).setChecked(true);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        if(id==R.id.nav_quiz){
+            if(mCurrentFragment!=FRAGMENT_QUIZ){
+                toolbar.setTitle("QUIZ");
+                replaceFragment(fquiz);
+                mCurrentFragment =FRAGMENT_QUIZ;
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+        }else if(id==R.id.nav_progress){
+            if(mCurrentFragment!=FRAGMENT_PROGRESS){
+                toolbar.setTitle("PROGRESS");
+                replaceFragment(fprogress);
+                mCurrentFragment =FRAGMENT_PROGRESS;
             }
-        });
-
-        CountDownTimer begin=new CountDownTimer(2000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
+        }else if(id==R.id.nav_profile){
+            toolbar.setTitle("MY PROFILE");
+            if(mCurrentFragment!=FRAGMENT_QUIZ){
+                replaceFragment(new QuizFragment());
+                mCurrentFragment =FRAGMENT_QUIZ;
             }
-
-            @Override
-            public void onFinish() {
-                for (int i=0;i<ListJoin.size();i++){
-                    if(ListJoin.get(i).getUser().getUserID()== user.getUserID()){
-                        ListQuiz.add(ListJoin.get(i).getQuiz());
-                        Progress3s.setVisibility(GONE);
-                    }
-                }
-                adapter = new QuizAdapter(MainActivity.this, ListQuiz);
-                listView.setAdapter(adapter);
+        }else if(id==R.id.nav_changepassword){
+            if(mCurrentFragment!=FRAGMENT_QUIZ){
+                toolbar.setTitle("CHANGE PASSWORD");
+                replaceFragment(new QuizFragment());
+                mCurrentFragment =FRAGMENT_QUIZ;
             }
-        }.start();
+        }
+        navigationView.getMenu().findItem(R.id.nav_quiz).setChecked(false);
+        navigationView.getMenu().findItem(R.id.nav_progress).setChecked(false);
+        navigationView.getMenu().findItem(R.id.nav_profile).setChecked(false);
+        navigationView.getMenu().findItem(R.id.nav_changepassword).setChecked(false);
+        navigationView.getMenu().findItem(id).setChecked(true);
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
-        btnProgress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,ViewProgressActivity.class);
-                startActivity(intent);
-            }
-        });
+    @Override
+    public void onBackPressed() {
+        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        }else super.onBackPressed();
+    }
 
-
-//        myRef.child("JoinQuiz/3").setValue(new JoinQuiz(quiz,user));
-//        myRef.child("DidQuiz").push().setValue(new DidQuiz(quiz,user,4));
-//        myRef.child("Quiz").push().setValue(quiz);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Dialog dialog=new Dialog(MainActivity.this);
-                dialog.setContentView(R.layout.dialog_confirm);
-                Button btnXN=dialog.findViewById(R.id.btnXN);
-                Button btnHuy=dialog.findViewById(R.id.btnHuy);
-                dialog.show();
-                btnXN.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent=new Intent(MainActivity.this,PlayActivity.class);
-                        startActivity(intent);
-                    }
-                });
-                btnHuy.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-            }
-        });
+    private void replaceFragment(Fragment fragment){
+        String backStateName = fragment.getClass().getName();
+        boolean fragmentPopped = getSupportFragmentManager().popBackStackImmediate (backStateName, 0);
+        if(!fragmentPopped){
+            FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+            transaction.addToBackStack(backStateName);
+            transaction.replace(R.id.content_frame,fragment);
+            transaction.commit();
+        }
     }
 }

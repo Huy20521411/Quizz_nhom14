@@ -10,10 +10,10 @@
     <TextView
         android:paddingTop="5px"
         android:layout_marginLeft="25px"
-        android:id="@+id/tvExamName"
+        android:id="@+id/tvDidQuizName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ten Exam"
+        android:text="Ten Quiz"
         android:textSize="70px"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -22,7 +22,7 @@
         android:paddingTop="5px"
         android:paddingBottom="5px"
         android:layout_marginLeft="25px"
-        android:id="@+id/tvExamSub"
+        android:id="@+id/tvDidSubName"
         android:layout_marginTop="10px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,16 +32,38 @@
         android:paddingTop="5px"
         android:paddingBottom="5px"
         android:layout_marginLeft="25px"
-        android:id="@+id/tvExamNumques"
+        android:id="@+id/tvNumDid"
+        android:layout_marginTop="10px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="So cau hoi"
+        android:text="Số lần làm quiz:"
         android:textSize="50px"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:paddingTop="5px"
+        android:paddingBottom="5px">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tỉ lệ trả lời đúng"
+            android:textSize="50px"/>
+        <ProgressBar
+            android:id="@+id/progress1"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30px"
+            android:layout_margin="30px"/>
+    </LinearLayout>
+
     <TextView
         android:paddingTop="5px"
         android:paddingBottom="5px"
         android:paddingRight="20px"
-        android:id="@+id/tvTeacher"
+        android:id="@+id/tvTeacher1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ten giang vien"

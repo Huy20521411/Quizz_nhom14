@@ -11,9 +11,6 @@ import android.widget.TextView;
 import com.example.quizz_nhom14.R;
 import com.example.quizz_nhom14.object.DidQuiz;
 import com.example.quizz_nhom14.object.DidSameQuizs;
-import com.google.firebase.database.DatabaseReference;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -44,7 +41,7 @@ public class DidSameQuizAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row=inflater.inflate(R.layout.didquiz_item,null);
+        View row=inflater.inflate(R.layout.didsamequiz_item,null);
         ArrayList<DidQuiz> list=new ArrayList<>();
         list=this.listdidsame.get(position).list;
         TextView namequiz=row.findViewById(R.id.tvDidQuizName);
@@ -55,7 +52,7 @@ public class DidSameQuizAdapter extends BaseAdapter {
         namequiz.setText(list.get(0).getQuiz().getName());
         subname.setText(list.get(0).getQuiz().getSub());
         didnum.setText("Số lần làm quiz: "+list.size());
-        teacher.setText(list.get(list.size()-1).getQuiz().getTeacher());
+        teacher.setText(list.get(list.size()-1).getQuiz().getTeacher()+" ");
         progressBar.setProgress((int)(this.listdidsame.get(position).getAverage()));
         return row;
     }

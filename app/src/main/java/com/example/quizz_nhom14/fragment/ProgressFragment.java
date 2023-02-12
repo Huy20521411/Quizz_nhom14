@@ -1,18 +1,24 @@
-package com.example.quizz_nhom14.activity;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.quizz_nhom14.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.quizz_nhom14.R;
+import com.example.quizz_nhom14.activity.ViewDidQuiz;
+import com.example.quizz_nhom14.activity.ViewProgressActivity;
 import com.example.quizz_nhom14.adapterclass.DidSameQuizAdapter;
 import com.example.quizz_nhom14.object.DidQuiz;
 import com.example.quizz_nhom14.object.DidSameQuizs;
@@ -26,20 +32,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class ViewProgressActivity extends AppCompatActivity {
+public class ProgressFragment extends Fragment {
     TextView test;
     ListView lvDidSameQuiz;
     ArrayList<DidQuiz> ListDidQuiz;
     ArrayList<DidSameQuizs> ListDidSameQuiz;
     DidSameQuizAdapter didSameQuizAdapter;
+    ProgressBar progressBar;
     int count=0;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.progress_layout);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v=inflater.inflate(R.layout.progress_layout,container,false);
 
-//        test=findViewById(R.id.tv_Title);
-        lvDidSameQuiz=findViewById(R.id.lvdidsame);
+        progressBar=v.findViewById(R.id.progress1);
+//        test=v.findViewById(R.id.tv_Title);
+        lvDidSameQuiz=v.findViewById(R.id.lvdidsame);
         ListDidQuiz=new ArrayList<>();
         ListDidSameQuiz=new ArrayList<>();
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
@@ -56,25 +64,25 @@ public class ViewProgressActivity extends AppCompatActivity {
 
             }
         });
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LocalDateTime myDateObj = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    myDateObj = LocalDateTime.now();
-                }
-                DateTimeFormatter myFormatObj = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-                }
-
-                String formattedDate = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    formattedDate = myDateObj.format(myFormatObj);
-                }
-                Toast.makeText(ViewProgressActivity.this, formattedDate, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        test.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                LocalDateTime myDateObj = null;
+//                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//                    myDateObj = LocalDateTime.now();
+//                }
+//                DateTimeFormatter myFormatObj = null;
+//                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//                    myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//                }
+//
+//                String formattedDate = null;
+//                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//                    formattedDate = myDateObj.format(myFormatObj);
+//                }
+//                Toast.makeText(v.getContext(), formattedDate, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         CountDownTimer begin=new CountDownTimer(2000,1000) {
             @Override
@@ -83,6 +91,7 @@ public class ViewProgressActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                progressBar.setVisibility(View.GONE);
                 sort(ListDidQuiz,0,ListDidQuiz.size()-1);
                 if(ListDidQuiz.size()!=0){
                     ListDidSameQuiz.add(new DidSameQuizs());
@@ -103,7 +112,7 @@ public class ViewProgressActivity extends AppCompatActivity {
                         }
                     }
                 }
-                didSameQuizAdapter=new DidSameQuizAdapter(ViewProgressActivity.this,ListDidSameQuiz);
+                didSameQuizAdapter=new DidSameQuizAdapter(v.getContext(),ListDidSameQuiz);
                 lvDidSameQuiz.setAdapter(didSameQuizAdapter);
             }
         }.start();
@@ -111,11 +120,12 @@ public class ViewProgressActivity extends AppCompatActivity {
         lvDidSameQuiz.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent a=new Intent(ViewProgressActivity.this,ViewDidQuiz.class);
+                Intent a=new Intent(v.getContext(), ViewDidQuiz.class);
                 startActivity(a);
             }
         });
 
+        return v;
     }
     int partition(ArrayList<DidQuiz> arr, int low, int high) {
         int pivot = arr.get(high).getQuiz().getID();

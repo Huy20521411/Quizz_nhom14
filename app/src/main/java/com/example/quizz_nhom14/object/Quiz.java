@@ -1,6 +1,8 @@
 package com.example.quizz_nhom14.object;
 
-public class Quiz {
+import java.io.Serializable;
+
+public class Quiz implements Serializable {
     private int ID=-1;
     private String Name;//Tên Quiz
     private String Sub;//Tên môn học

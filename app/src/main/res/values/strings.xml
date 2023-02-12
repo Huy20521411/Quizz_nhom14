@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Quizz_nhom14</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_draw_start">Open Nav</string>
+    <string name="nav_drawe_close">Close Nav</string>
+
 </resources>

@@ -50,7 +50,7 @@ public class QuizAdapter extends BaseAdapter {
         tvName.setText(quiz.getName());
         tvSub.setText("Môn học: "+ quiz.getSub());
         tvNum.setText("Số câu hỏi: "+ quiz.getNumof_questions());
-        tvTeacher.setText("Giảng viên: "+ quiz.getTeacher());
+        tvTeacher.setText( quiz.getTeacher()+" ");
 
         return row;
     }

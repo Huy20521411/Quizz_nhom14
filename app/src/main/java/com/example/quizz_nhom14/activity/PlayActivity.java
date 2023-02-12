@@ -6,6 +6,7 @@ import static android.view.View.VISIBLE;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -36,19 +37,25 @@ public class PlayActivity extends AppCompatActivity {
     TextView Clock,BeginClock,nameQues,countQues;
     TextView[] ans=new TextView[4];
     Button btnNext,btnFinish;
-    ArrayList<Question> listQues;
+    ArrayList<Question> listQues,listQuestion;
     int count=0;
     int result=0;
     int countDidQuiz=0;
     int CountClickBtnFinish=0;
     DidQuiz dq=null;
+
     User user=new User(2,"Khoi 1");
-    Quiz quiz=new Quiz("Mobile Layout","Mobile",3,"Nghi");
+    Quiz quiz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-        this.setTitle(quiz.getName());
+
+
+        Intent intent=getIntent();
+        Quiz q=(Quiz) intent.getSerializableExtra("quiz");
+        this.setTitle(q.getName());
+        quiz=q;
 
         BeginClock=findViewById(R.id.tv_BeginClock);
         Clock=findViewById(R.id.tvTime);
@@ -67,6 +74,7 @@ public class PlayActivity extends AppCompatActivity {
         btnFinish=findViewById(R.id.btnFinish);
 
         listQues=new ArrayList<>();
+        listQuestion=new ArrayList<>();
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         myRef.child("Question").addValueEventListener(new ValueEventListener() {
             @Override
@@ -101,7 +109,7 @@ public class PlayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 count++;
-                Question Q=listQues.get(count);
+                Question Q=listQuestion.get(count);
                 setQuestion(Q);
                 setEnableAns();
             }
@@ -113,8 +121,8 @@ public class PlayActivity extends AppCompatActivity {
             ln[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ln[listQues.get(count).getCorrectAnswer()-1].setBackground(getResources().getDrawable(R.drawable.ans_backgroundgreen));
-                    if(finalI!=listQues.get(count).getCorrectAnswer()-1){
+                    ln[listQuestion.get(count).getCorrectAnswer()-1].setBackground(getResources().getDrawable(R.drawable.ans_backgroundgreen));
+                    if(finalI!=listQuestion.get(count).getCorrectAnswer()-1){
                         ln[finalI].setBackground(getResources().getDrawable(R.drawable.ans_backgroundred));
                     }
                     else{
@@ -123,7 +131,7 @@ public class PlayActivity extends AppCompatActivity {
                     btnNext.setVisibility(VISIBLE);
                     setDisableAns();
                     countDownTimer.cancel();
-                    if(count+1==listQues.size()){
+                    if(count+1==listQuestion.size()){
                         btnNext.setVisibility(GONE);
                         btnFinish.setVisibility(VISIBLE);
                     }
@@ -173,9 +181,13 @@ public class PlayActivity extends AppCompatActivity {
 
         @Override
         public void onFinish() {
+            for(int i=0;i<listQues.size();i++){
+                if(quiz.getID()==listQues.get(i).getQuizID()) listQuestion.add(listQues.get(i));
+            }
             BeginClock.setVisibility(GONE);
-            setQuestion(listQues.get(count));
+            setQuestion(listQuestion.get(count));
             VisibleItem();
+
         }
     };
 
@@ -190,6 +202,10 @@ public class PlayActivity extends AppCompatActivity {
             Clock.setText("Time Up!");
             btnNext.setVisibility(VISIBLE);
             setDisableAns();
+            if(count+1==listQuestion.size()){
+                btnNext.setVisibility(GONE);
+                btnFinish.setVisibility(VISIBLE);
+            }
         }
     };
     private void setQuestion(Question Q){
