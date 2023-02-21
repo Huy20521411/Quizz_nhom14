@@ -20,7 +20,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_myprofile, container,false);
-        User u=new User(false,1,"Ngo Quoc Khoi","khoi1","l","0901960571","Khoi123@gmail.com");
+        User u=new User(false,1,"Ngo Quoc Khoi","0901960571","Khoi123@gmail.com");
         name=v.findViewById(R.id.tv_Fullname);
         gender=v.findViewById(R.id.tv_Gender);
         phone=v.findViewById(R.id.tv_Phone);
