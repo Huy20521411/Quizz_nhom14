@@ -4,9 +4,19 @@
     android:layout_height="wrap_content"
     android:id="@+id/examitem"
     android:orientation="vertical"
-    android:background="@drawable/background_itemquestions"
+    android:background="@drawable/background_didquizitem"
     android:layout_marginBottom="40px">
 
+    <TextView
+        android:paddingTop="5px"
+        android:paddingBottom="5px"
+        android:layout_marginLeft="25px"
+        android:id="@+id/tvLan"
+        android:layout_marginTop="10px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lần làm:"
+        android:textSize="50px"/>
     <TextView
         android:paddingTop="5px"
         android:paddingBottom="5px"
@@ -24,6 +34,7 @@
         android:layout_height="wrap_content"
         android:text="Số câu trả lời đúng"
         android:textSize="50px"
+        android:paddingBottom="10px"
         android:layout_marginLeft="25px"/>
 
 </LinearLayout>

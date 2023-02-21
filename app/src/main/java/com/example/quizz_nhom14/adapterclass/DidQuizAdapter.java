@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.quizz_nhom14.R;
@@ -40,9 +39,11 @@ public class DidQuizAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row=inflater.inflate(R.layout.didquiz_item,null);
+        View row=inflater.inflate(R.layout.item_didquiz,null);
+        TextView lan=row.findViewById(R.id.tvLan);
         TextView time=row.findViewById(R.id.tvTime);
         TextView result=row.findViewById(R.id.tvResult);
+        lan.setText("Lần làm: "+ ((position+1)));
         time.setText("Thời gian làm quiz: "+listdid.get(position).getTime());
         result.setText("Số câu trả lời đúng: "+listdid.get(position).getResult());
         return row;

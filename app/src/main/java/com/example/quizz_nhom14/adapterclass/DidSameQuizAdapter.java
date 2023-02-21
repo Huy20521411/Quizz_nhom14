@@ -41,7 +41,7 @@ public class DidSameQuizAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row=inflater.inflate(R.layout.didsamequiz_item,null);
+        View row=inflater.inflate(R.layout.item_didsamequiz,null);
         ArrayList<DidQuiz> list=new ArrayList<>();
         list=this.listdidsame.get(position).list;
         TextView namequiz=row.findViewById(R.id.tvDidQuizName);

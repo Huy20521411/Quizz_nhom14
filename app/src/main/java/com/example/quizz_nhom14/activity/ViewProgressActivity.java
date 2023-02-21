@@ -36,7 +36,7 @@ public class ViewProgressActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.progress_layout);
+        setContentView(R.layout.fragment_progress);
 
 //        test=findViewById(R.id.tv_Title);
         lvDidSameQuiz=findViewById(R.id.lvdidsame);

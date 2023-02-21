@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.quizz_nhom14.object.Quiz;
@@ -41,7 +40,7 @@ public class QuizAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row=inflater.inflate(R.layout.quiz_item,null);
+        View row=inflater.inflate(R.layout.item_quiz,null);
         Quiz quiz =list.get(position);
         TextView tvName=row.findViewById(R.id.tvExamName);
         TextView tvSub=row.findViewById(R.id.tvExamSub);

@@ -11,6 +11,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,8 +51,10 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window window=this.getWindow();
+        window.setStatusBarColor(this.getResources().getColor(R.color.play));
+        window.setNavigationBarColor(this.getResources().getColor(R.color.play));
         setContentView(R.layout.activity_play);
-
 
         Intent intent=getIntent();
         Quiz q=(Quiz) intent.getSerializableExtra("quiz");

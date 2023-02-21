@@ -11,8 +11,10 @@
     <color name="blue">#3765DA</color>
     <color name="teal_purple">#8D59EE</color>
     <color name="khoi">#D9E0E7</color>
+    <color name="play">#ABB6F6</color>
     <color name="boldblue">#153A96</color>
     <color name="wrong_ans">#F16A60</color>
     <color name="right_ans">#98E77B</color>
     <color name="bold_purple">#6509CE</color>
+    <color name="myprofile">#92B5FD</color>
 </resources>

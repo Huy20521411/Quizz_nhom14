@@ -7,16 +7,19 @@ public class User {
     private int gender;//1:nam__2:nu
     private String fullname;//Tên đầy đủ
     private String username,password;//Tên đăng nhập , mật khẩu
+    private String phone,email;//sdt,email
 
     public User() {
     }
 
-    public User(boolean classsify, int gender, String fullname, String username, String password) {
+    public User(boolean classsify, int gender, String fullname, String username, String password,String phone,String email) {
         this.classsify = classsify;
         this.gender = gender;
         this.fullname = fullname;
         this.username = username;
         this.password = password;
+        this.email=email;
+        this.phone=phone;
     }
     public User(int gender, String fullname) {
         this.gender = gender;
@@ -69,5 +72,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

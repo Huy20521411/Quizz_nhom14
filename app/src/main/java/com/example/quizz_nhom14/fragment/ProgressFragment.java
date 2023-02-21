@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +17,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.quizz_nhom14.R;
 import com.example.quizz_nhom14.activity.ViewDidQuiz;
-import com.example.quizz_nhom14.activity.ViewProgressActivity;
 import com.example.quizz_nhom14.adapterclass.DidSameQuizAdapter;
 import com.example.quizz_nhom14.object.DidQuiz;
 import com.example.quizz_nhom14.object.DidSameQuizs;
@@ -28,8 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ProgressFragment extends Fragment {
@@ -43,7 +39,7 @@ public class ProgressFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.progress_layout,container,false);
+        View v=inflater.inflate(R.layout.fragment_progress,container,false);
 
         progressBar=v.findViewById(R.id.progress1);
 //        test=v.findViewById(R.id.tv_Title);
@@ -101,6 +97,7 @@ public class ProgressFragment extends Fragment {
                                 ListDidSameQuiz.add(new DidSameQuizs());
                             }
                         }
+                        ListDidSameQuiz.get(count).list.add(ListDidQuiz.get(0));
                         for(int i=1;i<ListDidQuiz.size();i++){
                             if (ListDidQuiz.get(i).getQuiz().getID() == ListDidQuiz.get(i - 1).getQuiz().getID()) {
                                 ListDidSameQuiz.get(count).list.add(ListDidQuiz.get(i));
@@ -120,8 +117,9 @@ public class ProgressFragment extends Fragment {
         lvDidSameQuiz.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent a=new Intent(v.getContext(), ViewDidQuiz.class);
-                startActivity(a);
+                Intent intent=new Intent(v.getContext(), ViewDidQuiz.class);
+                intent.putExtra("dsq",ListDidSameQuiz.get(position).list.get(0).getQuiz());
+                startActivity(intent);
             }
         });
 

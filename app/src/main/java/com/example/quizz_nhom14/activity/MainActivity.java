@@ -18,6 +18,7 @@ import android.os.CountDownTimer;
 import android.view.MenuItem;
 
 import com.example.quizz_nhom14.R;
+import com.example.quizz_nhom14.fragment.ProfileFragment;
 import com.example.quizz_nhom14.fragment.ProgressFragment;
 import com.example.quizz_nhom14.fragment.QuizFragment;
 import com.example.quizz_nhom14.object.User;
@@ -81,9 +82,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }else if(id==R.id.nav_profile){
             toolbar.setTitle("MY PROFILE");
-            if(mCurrentFragment!=FRAGMENT_QUIZ){
-                replaceFragment(new QuizFragment());
-                mCurrentFragment =FRAGMENT_QUIZ;
+            if(mCurrentFragment!=FRAGMENT_PROFILE){
+                replaceFragment(new ProfileFragment());
+                mCurrentFragment =FRAGMENT_PROFILE;
             }
         }else if(id==R.id.nav_changepassword){
             if(mCurrentFragment!=FRAGMENT_QUIZ){
@@ -109,13 +110,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void replaceFragment(Fragment fragment){
-        String backStateName = fragment.getClass().getName();
-        boolean fragmentPopped = getSupportFragmentManager().popBackStackImmediate (backStateName, 0);
-        if(!fragmentPopped){
-            FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-            transaction.addToBackStack(backStateName);
-            transaction.replace(R.id.content_frame,fragment);
-            transaction.commit();
-        }
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_frame,fragment);
+        transaction.commit();
     }
 }

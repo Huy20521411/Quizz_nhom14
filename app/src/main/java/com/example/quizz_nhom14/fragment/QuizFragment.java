@@ -19,15 +19,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.quizz_nhom14.R;
-import com.example.quizz_nhom14.activity.MainActivity;
 import com.example.quizz_nhom14.activity.PlayActivity;
-import com.example.quizz_nhom14.activity.ViewProgressActivity;
 import com.example.quizz_nhom14.adapterclass.QuizAdapter;
 import com.example.quizz_nhom14.object.JoinQuiz;
-import com.example.quizz_nhom14.object.Question;
 import com.example.quizz_nhom14.object.Quiz;
 import com.example.quizz_nhom14.object.User;
 import com.google.firebase.database.DataSnapshot;
@@ -51,16 +47,17 @@ public class QuizFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.quizs_layout,container,false);
+        View view=inflater.inflate(R.layout.fragment_quizs,container,false);
         listView=view.findViewById(R.id.lv);
         progressBar=view.findViewById(R.id.progress1);
         ListJoin=new ArrayList<>();
         ListQuiz=new ArrayList<>();
         User user=new User(1,"Khoi 2");
-//        Quiz quiz =new Quiz("Game Vui","Python",10,"Hồng Nghĩa");
+        Quiz quiz =new Quiz("Game Vui","Python",10,"Hồng Nghĩa");
 //        Question question=new Question("Cau1","q","w","e","r",3,1);
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
-
+//        JoinQuiz jq=new JoinQuiz(quiz,user);
+//        myRef.child("JoinQuiz/4").setValue(jq);
         myRef.child("JoinQuiz").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -118,10 +115,10 @@ public class QuizFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Dialog dialog=new Dialog(view.getContext());
                 dialog.setContentView(R.layout.dialog_confirm);
-                Button btnXN=dialog.findViewById(R.id.btnXN);
-                Button btnHuy=dialog.findViewById(R.id.btnHuy);
+                TextView tv_ok=dialog.findViewById(R.id.dialog_ok);
+                TextView tv_huy=dialog.findViewById(R.id.dialog_huy);
                 dialog.show();
-                btnXN.setOnClickListener(new View.OnClickListener() {
+                tv_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
@@ -130,7 +127,7 @@ public class QuizFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
-                btnHuy.setOnClickListener(new View.OnClickListener() {
+                tv_huy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
