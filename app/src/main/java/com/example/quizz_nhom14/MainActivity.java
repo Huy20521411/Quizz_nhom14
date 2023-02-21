@@ -1,5 +1,6 @@
 package com.example.quizz_nhom14;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -11,16 +12,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.quizz_nhom14.databinding.ActivityMainBinding;
+import com.example.quizz_nhom14.ui.quiz.QuizFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
-    Intent intent;
+
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -35,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                a();
+                taoboquizmoi();
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
@@ -51,10 +59,32 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    private void a() {
-        intent = new Intent(this, SettingsActivity.class);
+    private void taoboquizmoi() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+        myRef.child("Quiz").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+               int countQuizid = (int)snapshot.getChildrenCount()+1;
+               startIntent(countQuizid);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+    void startIntent(int countQuizid)
+    {
+        Intent intent = new Intent(this, CreateQuizsActivity.class);
+        intent.putExtra("quizid",countQuizid);
         startActivity(intent);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -5,18 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
-import com.example.quizz_nhom14.R;
-import com.example.quizz_nhom14.object.Exam;
+import com.example.quizz_nhom14.object.DidSameQuizs;
 
 import java.util.ArrayList;
 
 public class ExamAdapter extends BaseAdapter {
     Context context;
-    ArrayList<Exam> list;
+    ArrayList<DidSameQuizs> list;
 
-    public ExamAdapter(Context context, ArrayList<Exam> list) {
+    public ExamAdapter(Context context, ArrayList<DidSameQuizs> list) {
         this.context = context;
         this.list = list;
     }

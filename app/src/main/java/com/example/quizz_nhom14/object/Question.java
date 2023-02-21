@@ -1,13 +1,30 @@
 package com.example.quizz_nhom14.object;
 
+import com.example.quizz_nhom14.Data.Time;
+
+import java.util.Calendar;
+
 public class Question {
     private int questionID;
     private String name;
     private String answerA,answerB,answerC,answerD;
     private int correctAnswer;
     private int quizID;
+    private Time time_question;
 
     public Question() {
+    }
+
+    public Question(int questionID, String name, String answerA, String answerB, String answerC, String answerD, int correctAnswer, int quizID,Time time_question) {
+        this.questionID = questionID;
+        this.name = name;
+        this.answerA = answerA;
+        this.answerB = answerB;
+        this.answerC = answerC;
+        this.answerD = answerD;
+        this.correctAnswer = correctAnswer;
+        this.quizID = quizID;
+        this.time_question = time_question;
     }
 
     public Question(int questionID, String name, String answerA, String answerB, String answerC, String answerD, int correctAnswer, int quizID) {
@@ -19,6 +36,7 @@ public class Question {
         this.answerD = answerD;
         this.correctAnswer = correctAnswer;
         this.quizID = quizID;
+        this.time_question = new Time(0,30);
     }
 
     public int getQuestionID() {
@@ -83,5 +101,13 @@ public class Question {
 
     public void setQuizID(int quizID) {
         this.quizID = quizID;
+    }
+
+    public Time getTime_question() {
+        return time_question;
+    }
+
+    public void setTime_question(Time time_question) {
+        this.time_question = time_question;
     }
 }

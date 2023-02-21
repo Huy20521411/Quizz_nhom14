@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".CreateQuizsActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.quiz.QuizFragment"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,22 +22,21 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_question"
         android:layout_width="match_parent"
-        android:layout_height="620dp" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
 
-        <Button
-            android:id="@+id/btn_asign"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Asign"
-            android:layout_marginRight="250dp"/>
+            app:srcCompat="@android:drawable/ic_delete"
+            android:layout_marginRight="280dp"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_addquestion"
             android:layout_width="wrap_content"

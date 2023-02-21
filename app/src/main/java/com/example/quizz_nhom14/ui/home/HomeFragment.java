@@ -5,17 +5,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quizz_nhom14.MainActivity;
 import com.example.quizz_nhom14.R;
 import com.example.quizz_nhom14.adapterclass.QuizzsAdapter;
 import com.example.quizz_nhom14.databinding.FragmentHomeBinding;
 import com.example.quizz_nhom14.object.Quiz;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -25,6 +34,8 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     QuizzsAdapter adapter;
     ArrayList<Quiz> Quizzss;
+
+    long numof_quiz;
 
     private FragmentHomeBinding binding;
 
@@ -41,12 +52,43 @@ public class HomeFragment extends Fragment {
 
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
+
         Quizzss = new ArrayList<Quiz>();
-        Quizzss.add(new Quiz("hayhoc","mmt",3,"huy"));
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+
+
+        myRef.child("Quiz").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                numof_quiz = snapshot.getChildrenCount();
+                for(int i=1 ; i <= numof_quiz ; i++)
+                {
+                    Quizzss.add(new Quiz(
+                            snapshot.child(i +"/ID").getValue(Integer.class),
+                            snapshot.child(i +"/Name").getValue().toString(),
+                            snapshot.child(i +"/Sub").getValue().toString(),
+                            snapshot.child(i +"/numof_questions").getValue(Integer.class),
+                            snapshot.child(i +"/Teacher").getValue().toString()
+                    ));
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         adapter= new QuizzsAdapter(getActivity(), Quizzss);
 
         rv_quizz.setAdapter(adapter);
         rv_quizz.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         return root;
     }
 

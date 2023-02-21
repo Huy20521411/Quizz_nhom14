@@ -1,6 +1,8 @@
 package com.example.quizz_nhom14.object;
 
-public class Quiz {
+import java.io.Serializable;
+
+public class Quiz implements Serializable {
     private int ID=-1;
     private String Name;//Tên Quiz
     private String Sub;//Tên môn học
@@ -10,7 +12,7 @@ public class Quiz {
     public Quiz() {
     }
 
-    public Quiz(String name, String sub, int numof_questions, String teacher) {
+    public Quiz(int ID,String name, String sub, int numof_questions, String teacher) {
         this.ID = ID;
         Name = name;
         Sub = sub;
