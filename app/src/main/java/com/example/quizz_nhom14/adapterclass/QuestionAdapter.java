@@ -29,6 +29,9 @@ import com.example.quizz_nhom14.R;
 import com.example.quizz_nhom14.object.Question;
 import com.example.quizz_nhom14.object.Quiz;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.collection.LLRBNode;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,6 +58,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             tv_AnswerB = itemView.findViewById(R.id.tv_AnswerB);
             tv_AnswerC = itemView.findViewById(R.id.tv_AnswerC);
             tv_AnswerD = itemView.findViewById(R.id.tv_AnswerD);
+
             A = itemView.findViewById(R.id.A);
             B = itemView.findViewById(R.id.B);
             C = itemView.findViewById(R.id.C);
@@ -82,7 +86,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Question question = dsQuestion.get(position);
-        holder.tv_NumOfQues.setText("Câu thứ " + String.valueOf(question.getQuestionID())+": " + question.getName());
+        int position1 = position +1;
+        holder.tv_NumOfQues.setText("Câu thứ " + position1 + ": " + question.getName());
         holder.tv_AnswerA.setText(question.getAnswerA());
         holder.tv_AnswerB.setText(question.getAnswerB());
         holder.tv_AnswerC.setText(question.getAnswerC());
@@ -93,19 +98,31 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         if(question.getCorrectAnswer()==1)
         {
             holder.A.setTextColor(Color.parseColor("#F44336"));
+            holder.B.setTextColor(Color.parseColor("#FF000000"));
+            holder.C.setTextColor(Color.parseColor("#FF000000"));
+            holder.D.setTextColor(Color.parseColor("#FF000000"));
         } else if(question.getCorrectAnswer()==2)
         {
             holder.B.setTextColor(Color.parseColor("#F44336"));
+            holder.A.setTextColor(Color.parseColor("#FF000000"));
+            holder.C.setTextColor(Color.parseColor("#FF000000"));
+            holder.D.setTextColor(Color.parseColor("#FF000000"));
 
         }
         else if(question.getCorrectAnswer()==3)
         {
             holder.C.setTextColor(Color.parseColor("#F44336"));
+            holder.B.setTextColor(Color.parseColor("#FF000000"));
+            holder.A.setTextColor(Color.parseColor("#FF000000"));
+            holder.D.setTextColor(Color.parseColor("#FF000000"));
 
         }
         else
         {
             holder.D.setTextColor(Color.parseColor("#F44336"));
+            holder.B.setTextColor(Color.parseColor("#FF000000"));
+            holder.C.setTextColor(Color.parseColor("#FF000000"));
+            holder.A.setTextColor(Color.parseColor("#FF000000"));
 
         }
 
@@ -148,7 +165,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                 et_content_C.setText(question.getAnswerC());
                 et_content_D.setText(question.getAnswerD());
 
-                btn_time.setText(question.getTime_question().getMinute()+ ":" + question.getTime_question().getSecond());
+                btn_time.setText(question.getTime()+"s");
 
                 if(question.getCorrectAnswer()==1)
                 {
@@ -168,8 +185,42 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                     @Override
                     public void onClick(View v) {
 
+                        if(rd_A.isChecked())
+                        {
+                            question.setCorrectAnswer(1);
+
+                        } else if (rd_B.isChecked())
+                        {
+                            question.setCorrectAnswer(2);
+                        } else if (rd_C.isChecked())
+                        {
+                            question.setCorrectAnswer(3);
+                        }else
+                        {
+                            question.setCorrectAnswer(4);
+                        }
+
+                        Question updatequestion = new Question(
+                                et_content_ques.getText().toString(),
+                                et_content_A.getText().toString(),
+                                et_content_B.getText().toString(),
+                                et_content_C.getText().toString(),
+                                et_content_D.getText().toString(),
+                                question.getCorrectAnswer(),
+                                question.getQuizID(),
+                                question.getTime(),
+                                question.getQuestionID());
+
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference();
+                        myRef.child("Question/"+question.getQuestionID()).setValue(updatequestion);
+
+                        dialog.dismiss();
+
                     }
+
                 });
+
 
                 btn_exit.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -190,9 +241,9 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                                 ///sử dụng thêm biến lưu trữ thời gian
 
 
-                                Toast.makeText(mContext, String.format("Thoi gian da chon: %d:%d",minute,second), Toast.LENGTH_SHORT).show();
+                                question.setTime(minute*60+second);
 
-                                btn_time.setText(minute + ":" + second);
+                                btn_time.setText(question.getTime()+"s");
 
                             }
                         },minute,second,true);

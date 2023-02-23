@@ -50,7 +50,8 @@
             android:id="@+id/A"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Đáp án A: " />
+            android:text="Đáp án A: "
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tv_AnswerA"
@@ -66,7 +67,8 @@
             android:id="@+id/B"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đáp án B: "/>
+            android:text="Đáp án B: "
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tv_AnswerB"
@@ -82,7 +84,8 @@
             android:id="@+id/C"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đáp án C: "/>
+            android:text="Đáp án C: "
+            android:textColor="@color/black" />
 
 
         <TextView
@@ -99,7 +102,8 @@
             android:id="@+id/D"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đáp án D: "/>
+            android:text="Đáp án D: "
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tv_AnswerD"

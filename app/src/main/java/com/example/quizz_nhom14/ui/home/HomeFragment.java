@@ -65,15 +65,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 numof_quiz = snapshot.getChildrenCount();
-                for(int i=1 ; i <= numof_quiz ; i++)
+                Quizzss.clear();
+                for(DataSnapshot sn : snapshot.getChildren())
                 {
-                    Quizzss.add(new Quiz(
-                            snapshot.child(i +"/ID").getValue(Integer.class),
-                            snapshot.child(i +"/Name").getValue().toString(),
-                            snapshot.child(i +"/Sub").getValue().toString(),
-                            snapshot.child(i +"/numof_questions").getValue(Integer.class),
-                            snapshot.child(i +"/Teacher").getValue().toString()
-                    ));
+                   Quizzss.add(sn.getValue(Quiz.class));
                 }
                 adapter.notifyDataSetChanged();
             }

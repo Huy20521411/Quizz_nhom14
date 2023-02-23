@@ -64,6 +64,7 @@ public class QuizzsAdapter extends RecyclerView.Adapter<QuizzsAdapter.ViewHolder
 
                 //mở csdl của bộ quizz này
                 Intent intent = new Intent(mContext, CreateQuizsActivity.class);
+                intent.putExtra("quizz",quiz);
                 mContext.startActivity(intent);
             }
 

@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.quizz_nhom14.databinding.ActivityMainBinding;
+import com.example.quizz_nhom14.object.Question;
+import com.example.quizz_nhom14.object.Quiz;
 import com.example.quizz_nhom14.ui.quiz.QuizFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    int countQuizid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                taoboquizmoi();
+                startIntent(countQuizid);
+//                Toast.makeText(MainActivity.this,countQuizid+"",Toast.LENGTH_LONG).show();
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
@@ -57,17 +61,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-    }
 
-    private void taoboquizmoi() {
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
         myRef.child("Quiz").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-               int countQuizid = (int)snapshot.getChildrenCount()+1;
-               startIntent(countQuizid);
+                countQuizid = (int)snapshot.getChildrenCount()+1;
             }
 
             @Override
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
     void startIntent(int countQuizid)

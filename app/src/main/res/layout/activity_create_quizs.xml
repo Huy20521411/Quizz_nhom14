@@ -14,10 +14,27 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên bộ Quizz:"
+            android:text="Tên bộ Quiz:"
             />
 
         <EditText
+            android:id="@+id/et_name_quiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên môn học:"
+            />
+
+        <EditText
+            android:id="@+id/et_name_sub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -25,7 +42,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_question"
         android:layout_width="match_parent"
-        android:layout_height="620dp" />
+        android:layout_height="574dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +54,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Asign"
-            android:layout_marginRight="250dp"/>
+            android:layout_marginRight="70dp"/>
+        <Button
+            android:id="@+id/btn_acept_create_quiz"
+            android:text="Đồng ý"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="70dp"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_addquestion"
             android:layout_width="wrap_content"

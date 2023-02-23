@@ -36,14 +36,4 @@
             />
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_delete_student"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textSize="10sp"
-        app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
-        app:backgroundTint="@color/red" />
 </LinearLayout>
