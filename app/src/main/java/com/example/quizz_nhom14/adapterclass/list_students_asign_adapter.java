@@ -46,7 +46,7 @@ public class list_students_asign_adapter extends BaseAdapter {
 
         JoinQuiz joinQuiz = (JoinQuiz) getItem(position);
         ((TextView) viewProduct.findViewById(R.id.tv_id)).setText(String.format("ID = %d", joinQuiz.getUser().getUserID()));
-        ((TextView) viewProduct.findViewById(R.id.tv_name)).setText(String.format("Tên SP : %s", joinQuiz.getUser().getFullname()));
+        ((TextView) viewProduct.findViewById(R.id.tv_name)).setText(String.format("Tên Sinh vien : %s", joinQuiz.getUser().getFullname()));
 
         return viewProduct;
     }
