@@ -397,22 +397,29 @@ public class CreateQuizsActivity extends AppCompatActivity {
 
 
         //keo ve
-        if(quiz !=null) {
+        myRef.child("JoinQuiz").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                joinQuizs.clear();
+                for(DataSnapshot sn: snapshot.getChildren())
+                {
+                    joinQuizs.add(sn.getValue(JoinQuiz.class));
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //tim user
+
             myRef.child("JoinQuiz").addValueEventListener(new ValueEventListener() {
-
-                //câp nhật ds sinh vien dc them
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    joinQuizs.clear();
-                    for(DataSnapshot sn: snapshot.getChildren())
-                    {
-                        int idquiz = sn.child("quizID").getValue(int.class);
-                        if(idquiz == quiz.getID())
-                        {
-                            dsQuestion.add(sn.getValue(Question.class));
-                        }
-                    }
-                    adapter.notifyDataSetChanged();
+                    newjoinquizid = (int) snapshot.getChildrenCount() + 1;
                 }
 
                 @Override
@@ -420,73 +427,39 @@ public class CreateQuizsActivity extends AppCompatActivity {
 
                 }
             });
-
-
-
-        }
-        else {
-
-            //Them
-            Toast.makeText(CreateQuizsActivity.this,"vô",Toast.LENGTH_LONG).show();
-            myRef.child("Quiz").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    newquizid = (int)snapshot.getChildrenCount()+1;
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-//            Toast.makeText(getApplicationContext(), "hello", Toast.LENGTH_LONG).show();
-
-
-        }
-
+        //them
         btn_add_asign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(), "hello", Toast.LENGTH_LONG).show();
+                int iduser = Integer.valueOf(et_search_id.getText().toString());
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference();
+                int dem = 0;
 
-                //lay id ve va truy xuat user
-
-                int userID = Integer.valueOf(et_search_id.getText().toString());
-
-                //tim iduser
-                for(User us: users)
-                {
-                    if(userID==us.getUserID())
-                    {
-                        user = us;
-                    }
+                for (JoinQuiz jq : joinQuizs) {
+                    if (jq.getUser().getUserID() == iduser)
+                        dem++;
                 }
+                if (dem != 0)
+                    Toast.makeText(getApplicationContext(), "Ban đã thêm học viên này rồi", Toast.LENGTH_SHORT).show();
+                else {
+                    for (User u : users) {
+                        if (iduser == u.getUserID()) {
+                            user = u;
+                        }
+                    }
 
-                //getuser
+                    //them
+                    JoinQuiz joinQuiz = new JoinQuiz(quiz, user);
 
-                Quiz quiz = new Quiz( newquizid,
-                        et_name_quiz.getText().toString(),
-                        et_name_sub.getText().toString(),
-                        4,
-                        "huy"
-                );
+                    //push
 
-                myRef.child("Quiz/"+newquizid).setValue(quiz);
-
-                JoinQuiz joinQuiz = new JoinQuiz( quiz, user);
-
-                myRef.child("JoinQuiz").child(String.valueOf(newjoinquizid)).setValue(joinQuiz);
-                joinQuizs.add(joinQuiz);
-                adapter.notifyDataSetChanged();
+                    myRef.child("JoinQuiz/" + newjoinquizid).setValue(joinQuiz);
+                    joinQuizs.add(joinQuiz);
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
-
-            //them thẳng
 
         btn_exit_diaglog_asign.setOnClickListener(new View.OnClickListener() {
             @Override
