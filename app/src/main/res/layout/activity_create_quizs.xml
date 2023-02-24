@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40px"
+    tools:context=".activity.CreateQuizsActivity">
+    <LinearLayout
+        android:id="@+id/input"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="30px"
+        android:background="@drawable/inputquiz">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên bộ Quiz:"
+                android:textSize="40px"/>
+
+            <EditText
+                android:layout_marginLeft="20px"
+                android:id="@+id/et_name_quiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên môn học:"
+                android:textSize="40px"/>
+
+            <EditText
+                android:id="@+id/et_name_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_question"
+        android:layout_marginTop="30px"
+        app:layout_constraintTop_toBottomOf="@id/input"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+        <Button
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/btn_asign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Asign"
+            android:layout_marginRight="70dp"/>
+        <Button
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/btn_acept_create_quiz"
+            android:text="Đồng ý"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="70dp"/>
+        <Button
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/fab_addquestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:background="@drawable/circle"
+            android:text="+"
+            android:textSize="65px"
+            android:textStyle="bold"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

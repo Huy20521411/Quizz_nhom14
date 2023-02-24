@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="20px"
+    android:paddingLeft="35px"
+    android:paddingRight="35px"
+    android:paddingBottom="35px"
+    android:background="@drawable/quesitem">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/tv_Number_of_Question"
+                android:gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Câu thứ:"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Sửa"
+                android:textSize="10sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/A"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Đáp án A: "
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_AnswerA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đáp án B: "
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_AnswerB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/C"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đáp án C: "
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:id="@+id/tv_AnswerC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đáp án D: "
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_AnswerD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

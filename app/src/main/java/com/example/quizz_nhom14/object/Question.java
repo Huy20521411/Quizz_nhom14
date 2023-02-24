@@ -6,11 +6,19 @@ public class Question {
     private String answerA,answerB,answerC,answerD;
     private int correctAnswer;
     private int quizID;
-
     public Question() {
     }
-
     public Question(String name, String answerA, String answerB, String answerC, String answerD, int correctAnswer, int quizID) {
+        this.name = name;
+        this.answerA = answerA;
+        this.answerB = answerB;
+        this.answerC = answerC;
+        this.answerD = answerD;
+        this.correctAnswer = correctAnswer;
+        this.quizID = quizID;
+    }
+    public Question(int questionID, String name, String answerA, String answerB, String answerC, String answerD, int correctAnswer, int quizID) {
+        this.questionID = questionID;
         this.name = name;
         this.answerA = answerA;
         this.answerB = answerB;

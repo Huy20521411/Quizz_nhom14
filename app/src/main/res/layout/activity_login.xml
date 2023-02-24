@@ -12,7 +12,7 @@
         android:id="@+id/logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/hehe"
+        android:src="@drawable/quizimg"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,42 +85,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
-<!--    android:background="@drawable/rounded_button_background"-->
-    <TextView
-        android:id="@+id/or_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/or_label"
-        android:textSize="16sp"
 
-        android:layout_marginVertical="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/register_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-<!--    android:textColor="@color/dark_gray"-->
-    <ImageView
-        android:id="@+id/google_sign_in_logo"
-        android:layout_width="84dp"
-        android:layout_height="84dp"
-        android:src="@drawable/hehe"
-        android:layout_marginVertical="20dp"
-        app:layout_constraintEnd_toStartOf="@id/facebook_sign_in_logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/or_text" />
-    <ImageView
-        android:id="@+id/facebook_sign_in_logo"
-        android:layout_width="84dp"
-        android:layout_height="84dp"
-        android:src="@drawable/hehe"
-        android:layout_marginVertical="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/google_sign_in_logo"
-        app:layout_constraintTop_toBottomOf="@id/or_text" />
-<!--    <com.google.android.gms.common.SignInButton-->
-<!--        android:id="@+id/google_sign_in_button"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/or_text"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

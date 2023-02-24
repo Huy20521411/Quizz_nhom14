@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_layout1"
+    android:id="@+id/drawer_layout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/khoi"
-    tools:context=".activity.student.ViewDidQuiz">
+    tools:context=".activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar1"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/blue"
@@ -27,22 +25,21 @@
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-        <ListView
-            android:paddingLeft="20px"
-            android:paddingRight="20px"
-            android:id="@+id/lvdid"
+
+        <FrameLayout
+            android:id="@+id/content_frame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50px"
-            android:scrollbars="none"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="10.0sp"
-            android:layout_marginBottom="20px"/>
+            android:layout_height="match_parent"
+            />
 
     </LinearLayout>
 
-
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_gv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/header_nav"
+        app:menu="@menu/menu_nav_gv"
+        android:layout_gravity="start"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
-
-

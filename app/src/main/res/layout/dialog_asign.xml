@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:background="@color/khoi">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_search_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nhập ID bạn muốn thêm vào"
+            android:layout_weight="2"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_add_asign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            app:srcCompat="@android:drawable/ic_input_add"/>
+
+    </LinearLayout>
+    <TextView
+        android:text="Học viên đã được thêm vào:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:id="@+id/lv_listAdded"
+        android:layout_width="match_parent"
+        android:layout_height="589dp" />
+
+    <Button
+        android:id="@+id/btn_exit_asign_dialog"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đóng"/>
+
+</LinearLayout>

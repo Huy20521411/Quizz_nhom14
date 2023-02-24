@@ -5,7 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quizz_nhom14.object.Quiz;
 import com.example.quizz_nhom14.R;
@@ -13,15 +17,14 @@ import com.example.quizz_nhom14.R;
 import java.util.ArrayList;
 
 public class QuizAdapter extends BaseAdapter {
+
     Context context;
     ArrayList<Quiz> list;
-
 
     public QuizAdapter(Context context, ArrayList<Quiz> list) {
         this.context = context;
         this.list = list;
     }
-
     @Override
     public int getCount() {
         return list.size();

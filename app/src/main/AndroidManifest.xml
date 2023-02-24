@@ -13,21 +13,22 @@
         android:theme="@style/Theme.Quizz_nhom14"
         tools:targetApi="31">
         <activity
-            android:name=".activity.ViewDidQuiz"
+            android:name=".activity.activity_login.EnterProfile"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.ViewProgressActivity"
+            android:name=".activity.student.ViewDidQuiz"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".activity.PlayActivity"
+            android:name=".activity.student.PlayActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -56,6 +57,13 @@
         </activity>
         <activity
             android:name=".activity.activity_login.ForgotPasswordActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.CreateQuizsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

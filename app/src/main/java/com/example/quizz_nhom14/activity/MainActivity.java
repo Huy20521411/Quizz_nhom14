@@ -2,7 +2,6 @@ package com.example.quizz_nhom14.activity;
 
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,11 +12,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.quizz_nhom14.R;
+import com.example.quizz_nhom14.fragment.ChangePasswordFragment;
+import com.example.quizz_nhom14.fragment.GV_Fragment;
 import com.example.quizz_nhom14.fragment.ProfileFragment;
 import com.example.quizz_nhom14.fragment.ProgressFragment;
 import com.example.quizz_nhom14.fragment.QuizFragment;
@@ -31,22 +35,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_PROGRESS=1;
     private static final int FRAGMENT_PROFILE =2;
     private static final int FRAGMENT_CHANGEPASS =3;
+    private static final int FRAGMENT_GV =4;
     private int mCurrentFragment=FRAGMENT_QUIZ;
     NavigationView navigationView;
     DrawerLayout mDrawerLayout;
     Toolbar toolbar;
-    QuizFragment fquiz=new QuizFragment();
-    ProgressFragment fprogress=new ProgressFragment();
     FragmentManager fm=getSupportFragmentManager();
+    User user;
+
+    public User getUser() {
+        return user;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        Intent intent=getIntent();
+        user= (User) intent.getSerializableExtra("user");
+        if(user.isClasssify()){
+            setContentView(R.layout.activity_main_gv);
+            navigationView=findViewById(R.id.nav_view_gv);
+        }
+        else{
+            setContentView(R.layout.activity_main_sv);
+            navigationView=findViewById(R.id.nav_view_sv);
+        }
         mDrawerLayout=findViewById(R.id.drawer_layout);
 
         toolbar=findViewById(R.id.toolbar);
-        toolbar.setTitle("QUIZS");
+        if(user.isClasssify()) toolbar.setTitle("MY QUIZS");
+        else toolbar.setTitle("QUIZS");
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle drawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,toolbar
@@ -55,30 +73,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-        navigationView=findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//        fquiz=new QuizFragment();
-//        fprogress=new ProgressFragment();
+        if(user.isClasssify()){
+            replaceFragment(new GV_Fragment());
+            navigationView.getMenu().findItem(R.id.nav_gv).setChecked(true);
+        }
+        else{
+            replaceFragment(new QuizFragment());
+            navigationView.getMenu().findItem(R.id.nav_quiz).setChecked(true);
+        }
 
-        replaceFragment(fquiz);
-        navigationView.getMenu().findItem(R.id.nav_quiz).setChecked(true);
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
         if(id==R.id.nav_quiz){
             if(mCurrentFragment!=FRAGMENT_QUIZ){
                 toolbar.setTitle("QUIZ");
-                replaceFragment(fquiz);
+                replaceFragment(new QuizFragment());
                 mCurrentFragment =FRAGMENT_QUIZ;
             }
         }else if(id==R.id.nav_progress){
             if(mCurrentFragment!=FRAGMENT_PROGRESS){
                 toolbar.setTitle("PROGRESS");
-                replaceFragment(fprogress);
+                replaceFragment(new ProgressFragment());
                 mCurrentFragment =FRAGMENT_PROGRESS;
+            }
+        }else if(id==R.id.nav_gv){
+            if(mCurrentFragment!=FRAGMENT_GV){
+                toolbar.setTitle("MY QUIZS");
+                replaceFragment(new GV_Fragment());
+                mCurrentFragment =FRAGMENT_GV;
             }
         }else if(id==R.id.nav_profile){
             toolbar.setTitle("MY PROFILE");
@@ -87,14 +113,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mCurrentFragment =FRAGMENT_PROFILE;
             }
         }else if(id==R.id.nav_changepassword){
-            if(mCurrentFragment!=FRAGMENT_QUIZ){
+            if(mCurrentFragment!=FRAGMENT_CHANGEPASS){
                 toolbar.setTitle("CHANGE PASSWORD");
-                replaceFragment(new QuizFragment());
-                mCurrentFragment =FRAGMENT_QUIZ;
+                replaceFragment(new ChangePasswordFragment());
+                mCurrentFragment =FRAGMENT_CHANGEPASS;
             }
         }
-        navigationView.getMenu().findItem(R.id.nav_quiz).setChecked(false);
-        navigationView.getMenu().findItem(R.id.nav_progress).setChecked(false);
+        if(user.isClasssify()){
+            navigationView.getMenu().findItem(R.id.nav_gv).setChecked(false);
+        }
+        else{
+            navigationView.getMenu().findItem(R.id.nav_quiz).setChecked(false);
+            navigationView.getMenu().findItem(R.id.nav_progress).setChecked(false);
+        }
         navigationView.getMenu().findItem(R.id.nav_profile).setChecked(false);
         navigationView.getMenu().findItem(R.id.nav_changepassword).setChecked(false);
         navigationView.getMenu().findItem(id).setChecked(true);
@@ -106,7 +137,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        }else super.onBackPressed();
+        }else{
+            Dialog dialog=new Dialog(MainActivity.this);
+            dialog.setContentView(R.layout.dialog_confirm_logout);
+            TextView huy,ok,tit;
+            tit=dialog.findViewById(R.id.dialog_tit);
+            tit.setText("You want to exit ?");
+            huy=dialog.findViewById(R.id.dialog_huy);
+            ok=dialog.findViewById(R.id.dialog_ok);
+            dialog.show();
+            ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    MainActivity.super.onBackPressed();
+                }
+            });
+            huy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+        }
     }
 
     private void replaceFragment(Fragment fragment){

@@ -6,9 +6,16 @@
     android:layout_height="match_parent"
     android:paddingLeft="20px"
     android:paddingRight="20px"
-    tools:context=".activity.ViewProgressActivity"
     android:background="@color/khoi">
-
+  <TextView
+      android:id="@+id/nodidquiz"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="You haven't taken any quiz."
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      android:layout_marginTop="60px"/>
   <ListView
       android:id="@+id/lvdidsame"
       android:layout_width="match_parent"

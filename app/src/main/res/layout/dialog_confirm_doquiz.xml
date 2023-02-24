@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="60px"
-        android:text="Tham gia quiz ?"
+        android:text="Take this quiz ?"
         android:textStyle="bold"
         android:layout_marginLeft="30px"
         android:layout_marginBottom="120px"/>

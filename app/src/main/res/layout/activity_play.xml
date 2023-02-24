@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.PlayActivity"
+    tools:context=".activity.student.PlayActivity"
     android:paddingLeft="30px"
     android:paddingRight="20px"
     android:background="@color/play">

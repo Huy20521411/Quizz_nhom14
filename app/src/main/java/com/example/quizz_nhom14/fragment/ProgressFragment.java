@@ -16,10 +16,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.quizz_nhom14.R;
-import com.example.quizz_nhom14.activity.ViewDidQuiz;
+import com.example.quizz_nhom14.activity.MainActivity;
+import com.example.quizz_nhom14.activity.student.ViewDidQuiz;
 import com.example.quizz_nhom14.adapterclass.DidSameQuizAdapter;
 import com.example.quizz_nhom14.object.DidQuiz;
 import com.example.quizz_nhom14.object.DidSameQuizs;
+import com.example.quizz_nhom14.object.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,29 +31,34 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class ProgressFragment extends Fragment {
-    TextView test;
+    TextView nodidquiz;
     ListView lvDidSameQuiz;
-    ArrayList<DidQuiz> ListDidQuiz;
+    ArrayList<DidQuiz> ListDidQuiz,ListDidQuizf;
     ArrayList<DidSameQuizs> ListDidSameQuiz;
     DidSameQuizAdapter didSameQuizAdapter;
     ProgressBar progressBar;
+    MainActivity mainActivity;
     int count=0;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_progress,container,false);
-
+        mainActivity= (MainActivity) getActivity();
+        User user = mainActivity.getUser();
         progressBar=v.findViewById(R.id.progress1);
 //        test=v.findViewById(R.id.tv_Title);
         lvDidSameQuiz=v.findViewById(R.id.lvdidsame);
+        nodidquiz=v.findViewById(R.id.nodidquiz);
+        nodidquiz.setVisibility(View.GONE);
         ListDidQuiz=new ArrayList<>();
+        ListDidQuizf=new ArrayList<>();
         ListDidSameQuiz=new ArrayList<>();
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         myRef.child("DidQuiz").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot s:snapshot.getChildren()){
-                    ListDidQuiz.add(s.getValue(DidQuiz.class));
+                    ListDidQuizf.add(s.getValue(DidQuiz.class));
                 }
             }
 
@@ -88,6 +95,12 @@ public class ProgressFragment extends Fragment {
             @Override
             public void onFinish() {
                 progressBar.setVisibility(View.GONE);
+                for(int i=0;i<ListDidQuizf.size();i++){
+                    if(ListDidQuizf.get(i).getUser().getUserID()==user.getUserID()){
+                        ListDidQuiz.add(ListDidQuizf.get(i));
+                    }
+
+                }
                 sort(ListDidQuiz,0,ListDidQuiz.size()-1);
                 if(ListDidQuiz.size()!=0){
                     ListDidSameQuiz.add(new DidSameQuizs());
@@ -108,6 +121,12 @@ public class ProgressFragment extends Fragment {
                             }
                         }
                     }
+                    else {
+                        ListDidSameQuiz.get(0).list.add(ListDidQuiz.get(0));
+                    }
+                }
+                else{
+                    nodidquiz.setVisibility(View.VISIBLE);
                 }
                 didSameQuizAdapter=new DidSameQuizAdapter(v.getContext(),ListDidSameQuiz);
                 lvDidSameQuiz.setAdapter(didSameQuizAdapter);

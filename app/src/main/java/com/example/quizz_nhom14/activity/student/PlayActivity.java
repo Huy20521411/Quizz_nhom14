@@ -1,4 +1,4 @@
-package com.example.quizz_nhom14.activity;
+package com.example.quizz_nhom14.activity.student;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -45,8 +45,7 @@ public class PlayActivity extends AppCompatActivity {
     int countDidQuiz=0;
     int CountClickBtnFinish=0;
     DidQuiz dq=null;
-
-    User user=new User(2,"Khoi 1");
+    User user;
     Quiz quiz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +57,10 @@ public class PlayActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         Quiz q=(Quiz) intent.getSerializableExtra("quiz");
+        User u= (User) intent.getSerializableExtra("user");
         this.setTitle(q.getName());
         quiz=q;
+        user=u;
 
         BeginClock=findViewById(R.id.tv_BeginClock);
         Clock=findViewById(R.id.tvTime);
