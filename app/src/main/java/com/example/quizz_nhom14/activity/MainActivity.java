@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     FragmentManager fm=getSupportFragmentManager();
     User user;
-
+    TextView tv_fullname,tv_email;
     public User getUser() {
         return user;
     }
@@ -61,8 +61,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView=findViewById(R.id.nav_view_sv);
         }
         mDrawerLayout=findViewById(R.id.drawer_layout);
-
         toolbar=findViewById(R.id.toolbar);
+        View headerView = navigationView.getHeaderView(0);
+        tv_email=headerView.findViewById(R.id.tv_email);
+        tv_fullname=headerView.findViewById(R.id.usernamenav);
+        tv_fullname.setText(user.getFullname());
+        tv_email.setText(user.getEmail());
         if(user.isClasssify()) toolbar.setTitle("MY QUIZS");
         else toolbar.setTitle("QUIZS");
         setSupportActionBar(toolbar);

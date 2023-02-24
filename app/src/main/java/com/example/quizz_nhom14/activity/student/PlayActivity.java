@@ -46,7 +46,7 @@ public class PlayActivity extends AppCompatActivity {
     int CountClickBtnFinish=0;
     DidQuiz dq=null;
     User user;
-    Quiz quiz;
+    Quiz quiz,q;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +56,7 @@ public class PlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play);
 
         Intent intent=getIntent();
-        Quiz q=(Quiz) intent.getSerializableExtra("quiz");
+        q=(Quiz) intent.getSerializableExtra("quiz");
         User u= (User) intent.getSerializableExtra("user");
         this.setTitle(q.getName());
         quiz=q;
@@ -216,7 +216,7 @@ public class PlayActivity extends AppCompatActivity {
     private void setQuestion(Question Q){
         btnNext.setVisibility(GONE);
         nameQues.setText(Q.getName());
-        countQues.setText("Question "+(count+1)+" of 2");
+        countQues.setText("Question "+(count+1)+" of "+q.getNumof_questions());
         ans[0].setText(Q.getAnswerA());
         ans[1].setText(Q.getAnswerB());
         ans[2].setText(Q.getAnswerC());
