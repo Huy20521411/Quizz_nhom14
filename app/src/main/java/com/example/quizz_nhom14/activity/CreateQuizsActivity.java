@@ -363,6 +363,7 @@ public class CreateQuizsActivity extends AppCompatActivity {
         myRef.child("JoinQuiz").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                jqs.clear();
                 joinQuizs.clear();
                 for(DataSnapshot sn: snapshot.getChildren())
                 {

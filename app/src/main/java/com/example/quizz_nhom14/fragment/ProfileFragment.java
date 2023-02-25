@@ -20,7 +20,7 @@ import com.example.quizz_nhom14.object.User;
 
 public class ProfileFragment extends Fragment {
     ImageView ava;
-    TextView name,gender,phone,role,email;
+    TextView id,name,gender,phone,role,email;
     Button btnLogout;
     MainActivity mainActivity;
     @Nullable
@@ -29,12 +29,14 @@ public class ProfileFragment extends Fragment {
         View v=inflater.inflate(R.layout.fragment_myprofile, container,false);
         mainActivity=(MainActivity)getActivity();
         User u=mainActivity.getUser();
+        id=v.findViewById(R.id.tv_ID);
         name=v.findViewById(R.id.tv_Fullname);
         gender=v.findViewById(R.id.tv_Gender);
         phone=v.findViewById(R.id.tv_Phone);
         role=v.findViewById(R.id.tv_Role);
         email=v.findViewById(R.id.tv_Mail);
         btnLogout=v.findViewById(R.id.btn_Logout);
+        id.setText(" ID: "+u.getUserID());
         name.setText(" "+u.getFullname());
         if(u.getGender()==1) gender.setText(" Nam");
         else gender.setText( " Nữ");
