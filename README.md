@@ -1,5 +1,3 @@
-# Quizz_nhom14
-ngay dau
 <!-- Banner -->
 <p align="center">
   <a href="https://www.uit.edu.vn/" title="Trường Đại học Công nghệ Thông tin" style="border: none;">
@@ -7,20 +5,22 @@ ngay dau
   </a>
 </p>
 <!-- Title -->
-<h1 align="center"><b>NT118.N12 - PHÁT TRIỂN ỨNG DỤNG TRÊN THIẾT BỊ DI ĐỘNG</b></h1>
+<h1 align="center"><b>PHÁT TRIỂN ỨNG DỤNG TRÊN THIẾT BỊ DI ĐỘNG - NT118.N12</b></h1>
 
 ## GIỚI THIỆU MÔN HỌC
 * **Tên môn học:** PHÁT TRIỂN ỨNG DỤNG TRÊN THIẾT BỊ DI ĐỘNG
-* **Mã lớp:** NT131.N21
-* **Năm học:** HK2 (2022 - 2023)
-* **Giảng viên:** ** TRẦN HỒNG NGHI
+* **Mã môn học:** NT118
+* **Mã lớp:** NT118.N12
+* **Năm học:** HK1 (2022 - 2023)
+* **Giảng viên:** **TRẦN HỒNG NGHI** - *nghith@uit.edu.vn*
 
 ## GIỚI THIỆU NHÓM
 ### Tên nhóm: NHÓM 14
-| STT | Họ tên - MSSV - Vai trò 
+| STT | Họ tên | MSSV | Vai trò | 
 | :---: | --- | --- | --- | 
-| 1 | TRẦN CHU HÙNG SƠN - 20521849 - Nhóm trưởng |
-| 2 | NGÔ QUỐC KHÔI - 20521478 - Thành viên | 
-| 3 | PHẠM CHẤN HUY - 20521411 - Thành viên | 
+| 1 | ĐỖ PHI SƠN | 20521839 | Nhóm trưởng | 
+| 1 | TRẦN CHU HÙNG SƠN| 20521849 | Nhóm trưởng |
+| 1 | NGÔ QUỐC KHÔI | 20521478 | Thành viên |
+| 1 | PHẠM CHẤN HUY | 20521411 | Thành viên |
 
-## ĐỀ TÀI: ỨNG DỤNG BỘ CÂU HỎI QUIZ APP
+## ĐỀ TÀI ỨNG DỤNG BỘ CÂU HỎI QUIZ APP TRÊN NỀN TẢNG ANDROID STUDIO
