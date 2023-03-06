@@ -18,7 +18,6 @@
 ### Tên nhóm: NHÓM 14
 | STT | Họ tên | MSSV | Vai trò | 
 | :---: | --- | --- | --- | 
-| 1 | ĐỖ PHI SƠN | 20521839 | Nhóm trưởng | 
 | 1 | TRẦN CHU HÙNG SƠN| 20521849 | Nhóm trưởng |
 | 1 | NGÔ QUỐC KHÔI | 20521478 | Thành viên |
 | 1 | PHẠM CHẤN HUY | 20521411 | Thành viên |
