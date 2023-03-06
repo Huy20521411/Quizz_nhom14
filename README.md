@@ -19,7 +19,8 @@ ngay dau
 ### Tên nhóm: NHÓM 14
 | STT | Họ tên - MSSV - Vai trò 
 | :---: | --- | --- | --- | 
-| 1 | TRẦN CHU HÙNG SƠN - 20521849 - Nhóm trưởng
-| 2 | NGÔ QUỐC KHÔI - 20521478 - Thành viên
-| 3 | PHẠM CHẤN HUY - 20521411 - Thành viên
+| 1 | TRẦN CHU HÙNG SƠN - 20521849 - Nhóm trưởng |
+| 2 | NGÔ QUỐC KHÔI - 20521478 - Thành viên | 
+| 3 | PHẠM CHẤN HUY - 20521411 - Thành viên | 
+
 ## ĐỀ TÀI: ỨNG DỤNG BỘ CÂU HỎI QUIZ APP
